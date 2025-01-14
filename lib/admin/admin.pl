@@ -15,16 +15,18 @@ show_settings(Request) :-
   http_parameters(
     Request,
     [  type(Type, [])  ]),
-    ( Type == server
-      -> findall(M-N, (current_setting(M:N), server_properties(M)), List); Type == applications
-      -> findall(M-N, (current_setting(M:N), application_properties(M)), List
-    )
-  ),
-  keysort(List, Sorted0),
-  delete(Sorted0, pengine-_, Sorted),
-  group_pairs_by_key(Sorted, ByModule),
-  show_modules(ByModule, JsonByModule),
-  reply_json(json([settings=JsonByModule])).
+    (
+      Type == server
+      -> findall(M-N, (current_setting(M:N), server_properties(M)), List)
+      ;
+      Type == applications
+      -> findall(M-N, (current_setting(M:N), application_properties(M)), List)
+    ),
+    keysort(List, Sorted0),
+    delete(Sorted0, pengine-_, Sorted),
+    group_pairs_by_key(Sorted, ByModule),
+    show_modules(ByModule, JsonByModule),
+    reply_json(json([settings=JsonByModule])).
 
 server_properties(http).
 server_properties(storage).
