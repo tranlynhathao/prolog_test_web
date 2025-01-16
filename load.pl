@@ -1,6 +1,6 @@
-% Main file to load the pengines demo. This file is included from
+% Main file to load the web demo. This file is included from
 %   - debug.pl for local debbuging
-%   - daemon.pl to run pengines as a Unix service
+%   - daemon.pl to run demo as a Unix service
 
 %  :- use_module(library(pengines)).
 
