@@ -2,6 +2,6 @@
 % Loads the demo and starts a server
 % Start swipl
 
-:- [load].
+:- consult(load).
 
-:- node(localhost:3000).
+:- node(localhost, 3000).

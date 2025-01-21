@@ -1,5 +1,12 @@
 /** <module> Prolog Web Server **/
-:- module(server, [ ]).
+:- module(server, [node/2]).
+
+:- use_module(library(http/thread_httpd)).
+:- use_module(library(http/http_dispatch)).
+
+node(Host, Port) :-
+  format('Starting server at ~w:~w~n', [Host, Port]),
+  http_server(http_dispatch, [port(Port)]).
 
 :- use_module(library(http/thread_httpd)).
 :- use_module(library(http/http_dispatch)).
@@ -25,4 +32,8 @@ user:file_search_path(apps, app(apps)).
 :- http_handler(root(tutorial), http_reply_file('www/tutorial.html', []), [prefix]).
 :- http_handler(root(admin/server), http_reply_file('www/admin/server.html', []), [prefix, authentication(basic(passwd, admin))]).
 :- http_handler(root(admin/applications), http_reply_file('www/admin/applications.html', []), [prefix, authentication(basic(passwd, admin))]).
-% :- http_handler(root(admin/statistics), http_reply_file('www/admin/statistics.html', [])
+:- http_handler(root(admin/statistics), http_reply_file('www/admin/statistics.html', []), [prefix, authentication(basic(passwd, admin))]).
+:- http_handler(root(admin/account), http_reply_file('www/admin/account.html', []), [prefix, authentication(basic(passwd, admin))]).
+
+:- http_handler(root(admin), http_redirect(moved_temporary, root(admin/server)), []).
+:- http_handler(/, http_redirect(moved_temporary, root('docs/index.html')), []).
