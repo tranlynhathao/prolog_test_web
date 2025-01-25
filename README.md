@@ -11,6 +11,9 @@ cd prolog_test_web
 swipl run.pl
 ```
 
+> [!NOTE]
+> To view the interface, open the address `127.0.0.1:3000` in your browser.
+
 # Steps for the Server to Use the `passwd` File
 
 #### **Create the `passwd` File**
