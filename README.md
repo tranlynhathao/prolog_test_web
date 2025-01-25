@@ -13,15 +13,16 @@ swipl run.pl
 
 # Steps for the Server to Use the `passwd` File
 
-1. **Create the `passwd` File**:
+### **Create the `passwd` File**
+
    The `passwd` file should contain entries in the following format:
 
    ```
    username:hashed_password
    ```
 
-   - `username` is the name of the user (e.g., `admin`).
-   - `hashed_password` is the password hashed using a secure hash function, typically MD5 or SHA-256.
+- `username` is the name of the user (e.g., `admin`).
+- `hashed_password` is the password hashed using a secure hash function, typically MD5 or SHA-256.
 
    Example:
 
