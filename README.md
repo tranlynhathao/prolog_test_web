@@ -64,3 +64,9 @@ swipl run.pl
 #### Verification
 
 - Ensure the `passwd` file is in the correct location (e.g., the same directory as `server.pl` or provide the absolute path).
+
+# Check List
+
+- [ ] Prepare documentation for Prolog logic
+- [ ] Add pages to the website
+- [ ] Adjust the navbar for the documentation
