@@ -8,3 +8,47 @@
 :- use_module(library(settings)).
 :- use_module(library(url)).
 :- use_module(library(filesex)).
+
+:- setting(storage_dir, atom, storage, 'The directory for storing files.').
+
+user:file_search_path(storage, Dir) :-
+  setting(storage_dir, Dir).
+
+:- http_handler(root(storage), serve_files_directory(storage), [prefix]).
+:- http_handler(root(storage/store), store, []).
+:- http_handler(root(storage/update), update, []).
+
+:- use_module(library(random)).
+file_uuid(Id) :-
+  Max is 1<<128,
+  random_between(0, Max, Num),
+  atom_number(Id, Num).
+
+store(Request) :-
+  http_parameters(Request, [
+    program(Program, []),
+    type(Type, [default(pl)])
+  ]),
+  setting(storage_dir, Dir),
+  file_uuid(Base),
+  make_directory_path(Dir),
+  file_name_extension(Base, Type, File),
+  directory_file_path(Dir, File, RelPath),
+  http_current_host(Request, Hostname, Port, []),
+  parse_url(URL, [
+    protocol(http),
+    host(Hostname),
+    port(Port)
+  ]),
+  setup_call_cleanup(open(RelPath, write, S), write(S, Program), close(S)),
+  reply_json(_{url:URL, file:File}).
+
+update(Request) :-
+  http_parameters(Request, [
+    file(File, []),
+    program(Program, [])
+  ]),
+  setting(storage_dir, Dir),
+  directory_file_path(Dir, File, RelPath),
+  setup_call_cleanup(open(RelPath, write, S), write(S, Program), close(S)),
+  reply_json(_{ok:true}).
