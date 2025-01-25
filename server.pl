@@ -36,4 +36,4 @@ user:file_search_path(apps, app(apps)).
 :- http_handler(root(admin/account), http_reply_file('www/admin/account.html', []), [prefix, authentication(basic(passwd, admin))]).
 
 :- http_handler(root(admin), http_redirect(moved_temporary, root(admin/server)), []).
-:- http_handler(/, http_redirect(moved_temporary, root('docs/index.html')), []).
+:- http_handler(/, http_redirect(moved_temporary, root('content/index.html')), []).
