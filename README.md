@@ -1,3 +1,7 @@
+<p align="center">
+    <img with="45%" src="assets/interface.png">
+</p>
+
 # Installation
 
 Install the latest  [SWI-Prolog](http://www.swi-prolog.org) _development
