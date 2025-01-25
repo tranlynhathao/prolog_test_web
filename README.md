@@ -13,7 +13,7 @@ swipl run.pl
 
 # Steps for the Server to Use the `passwd` File
 
-### **Create the `passwd` File**
+#### **Create the `passwd` File**
 
    The `passwd` file should contain entries in the following format:
 
@@ -37,3 +37,30 @@ swipl run.pl
    ```
 
    Enter the desired password, and it will generate a hash.
+
+#### How to Update
+
+- Use `htpasswd` (if available):
+
+  ```bash
+  htpasswd -c passwd admin
+  ```
+
+  The above command will create a new `passwd` file with the username `admin` and prompt you to enter a password.
+
+- If `htpasswd` is not available, you can manually hash the password. For example, to create a hash for the password `1234`:
+
+  ```prolog
+  ?- use_module(library(crypto)).
+  ?- crypto_password_hash('1234', Hash), writeln(Hash).
+  ```
+
+  Then add it to the `passwd` file:
+
+  ```
+  admin:$pbkdf2-sha256$... (the generated hash)
+  ```
+
+#### Verification
+
+- Ensure the `passwd` file is in the correct location (e.g., the same directory as `server.pl` or provide the absolute path).
