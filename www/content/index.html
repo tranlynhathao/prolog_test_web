@@ -10,8 +10,12 @@
     <!-- Pengines core CSS -->
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <!-- Documentation extras -->
-    <link href="manual_files/docs.css" rel="stylesheet" />
+    <link href="manual_files/style.css" rel="stylesheet" />
     <link rel="icon" href="../favicon/favicon.ico" type="image/x-icon" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      rel="stylesheet"
+    />
   </head>
   <body class="bs-docs-home">
     <!-- Docs master nav -->
@@ -42,7 +46,7 @@
               <a href="/apps/swish/index.html">Web Prolog</a>
             </li>
             <li>
-              <a href="/content/docs/documentation.html">Docs</a>
+              <a href="/content/docs/index.html">Docs</a>
             </li>
             <!-- <li> -->
             <!--   <a href="/admin/statistics.html">Stats</a> -->
@@ -53,6 +57,9 @@
           </ul>
         </nav>
       </div>
+      <button id="theme-toggle" class="btn btn-outline-primary btn-sm">
+        <i class="fas fa-moon"></i>
+      </button>
     </header>
     <!-- Page content of course! -->
     <main class="bs-masthead" id="content">
@@ -93,9 +100,9 @@
             >GitHub project</a
           >
         </li>
-        <li>
-          <a href="/content/presentation/index.html">The Pengines Tour</a>
-        </li>
+        <!-- <li> -->
+        <!--   <a href="/content/presentation/index.html">The Pengines Tour</a> -->
+        <!-- </li> -->
       </ul>
     </footer>
     <!-- Placed at the end of the document so the pages load faster -->
@@ -104,5 +111,6 @@
     <!-- <script src="manual_files/widgets.js"></script> -->
     <!-- <script src="manual_files/holder.js"></script> -->
     <!-- <script src="manual_files/application.js"></script> -->
+    <script src="manual_files/helper.js"></script>
   </body>
 </html>
